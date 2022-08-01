@@ -40,8 +40,7 @@ export const ButtonStyled = styled.button`
   margin: 15px 0 0 100px;
 `;
 
-export const ListStyled = styled.ul`
-  /* list-style: none; */
+export const ListStyled = styled.ol`
 `;
 
 export const ListItem = styled.li`
@@ -54,3 +53,9 @@ export const ParagraphStyled = styled.p`
   font-weight: 400;
   margin: 10px 0 5px 20px;
 `;
+
+export const ButtonDeleteStyled = styled.button`
+    font-size: 14px;
+  font-weight: 400;
+  margin: 10px 0 0 50px;
+`

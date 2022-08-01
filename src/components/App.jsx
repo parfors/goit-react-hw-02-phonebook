@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Phonebook } from 'components';
+import {Form, SectionStyled, ContactsList, Filter, TitleStyled} from 'components'
 
 export class App extends Component {
   state = {
@@ -9,22 +9,49 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
+    filter: '',
   };
 
-  filterName = search => {
-    this.setState(({ contacts }) => {
-      const arr = contacts.filter(el => el.name.includes(search));
-      console.log(arr);
-    });
-  };
+  deleteContact = (id) => {
+    this.setState(prevState => { return {
+      contacts: prevState.contacts.filter(el => el.id !== id)}
+    })
+  }
 
+  formSubmitHandler = (data) => {
+    const normilizedData = data.name.toLowerCase()
+    if (this.state.contacts.some(el => el.name.toLowerCase() === normilizedData)) {
+      alert(`${data.name} is already in contacts`)
+      return
+    }
+    this.setState((prevState) => {
+      return { contacts: [data, ...prevState.contacts] }
+    })
+}
+
+  filterChangeHandler = (event) => {
+    this.setState({ filter: event.currentTarget.value})
+  }
+  
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const normilizedFilter = filter.toLowerCase();
+    const visibleContacts = contacts.filter(el => el.name.toLowerCase().includes(normilizedFilter));
+
     return (
       <>
-        <Phonebook contacts={contacts} onFilter={this.filterName}></Phonebook>
+        <SectionStyled>
+          <TitleStyled>Phonebook</TitleStyled>
+          <Form onSubmit={this.formSubmitHandler}/>
+          <TitleStyled>Contacts</TitleStyled>
+          <Filter
+            value={filter}
+            onChange={ this.filterChangeHandler} />
+          <ContactsList
+            contacts={visibleContacts}
+            onBtnDelet={this.deleteContact} />
+        </SectionStyled>
+
       </>
     );
   }
