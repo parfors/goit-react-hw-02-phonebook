@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {Form, SectionStyled, ContactsList, Filter, TitleStyled} from 'components'
+import {Form, SectionStyled, ContactsList, Filter, TitleStyled, RadioInput} from 'components'
 
 export class App extends Component {
   state = {
@@ -51,6 +51,7 @@ export class App extends Component {
             contacts={visibleContacts}
             onBtnDelet={this.deleteContact} />
         </SectionStyled>
+        <RadioInput/>
 
       </>
     );

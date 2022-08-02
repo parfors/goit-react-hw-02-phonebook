@@ -59,3 +59,14 @@ export const ButtonDeleteStyled = styled.button`
   font-weight: 400;
   margin: 10px 0 0 50px;
 `
+
+export const InputRadioStyled = styled.input`
+  background-color: #0080002f;
+  margin-left: 20px;
+  margin-right: 10px;
+
+  `
+
+  export const LabeleRadio = styled(LabelStyled)`
+  justify-content: flex-start;
+  `

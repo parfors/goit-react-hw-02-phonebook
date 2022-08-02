@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types'
 import {FormStyled,LabelStyled,ButtonStyled, InputStyled} from 'components'
 
 export class Form extends Component {
@@ -7,7 +8,11 @@ export class Form extends Component {
     name: '',
     number: '',
     }
-    
+  
+ static propTypes = {
+    onSubmit: PropTypes.func,
+  }
+  
       hendleChange = (event) => {
     const { value, name } = event.currentTarget;
     this.setState({ [name]: value });
@@ -46,7 +51,7 @@ export class Form extends Component {
               required
               onChange={this.hendleChange}
               value={name}
-            ></InputStyled>
+            />
           </LabelStyled>
           <LabelStyled>
             Tel
@@ -58,7 +63,7 @@ export class Form extends Component {
               required
               onChange={this.hendleChange}
               value={number}
-            ></InputStyled>
+            />
           </LabelStyled>
           <ButtonStyled type="submit">Add contact</ButtonStyled>
         </FormStyled>

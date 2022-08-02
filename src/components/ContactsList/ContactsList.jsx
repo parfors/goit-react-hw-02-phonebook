@@ -1,15 +1,21 @@
-import {ListStyled,ListItem,ParagraphStyled,ButtonDeleteStyled } from 'components'
+import { ListStyled, ContactItem } from 'components'
+import PropTypes from 'prop-types'
 
 export const ContactsList = ({contacts, onBtnDelet }) => {
     return <>
     <ListStyled>
           {contacts.map(({ id, name, number }) => (
-            <ListItem key={id}>
-              <ParagraphStyled>Name: {name}</ParagraphStyled>
-              <ParagraphStyled>Nubmer: {number}</ParagraphStyled>
-              <ButtonDeleteStyled onClick={() => onBtnDelet(id) }type='button'>Delete</ButtonDeleteStyled>
-            </ListItem> 
+            <ContactItem
+              key={id}
+              name={name}
+              number={number}
+              onBtnDelet={()=> onBtnDelet(id)}/>
           ))}
         </ListStyled>
     </>
+}
+
+ContactsList.propTypes = {
+  contacts: PropTypes.array,
+  onBtnDelet: PropTypes.func,
 }

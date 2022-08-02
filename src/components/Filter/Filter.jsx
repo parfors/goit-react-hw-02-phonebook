@@ -1,4 +1,5 @@
-import {ParagraphStyled, InputStyled} from 'components'
+import { ParagraphStyled, InputStyled } from 'components'
+import PropTypes from 'prop-types'
 
 export const Filter = ({value, onChange}) => {
     return <>
@@ -9,4 +10,9 @@ export const Filter = ({value, onChange}) => {
           value={value}
         />
     </>
+}
+
+Filter.propTypes = {
+  value: PropTypes.string, 
+  onChange: PropTypes.func,
 }
