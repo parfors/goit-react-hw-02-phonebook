@@ -1,5 +1,12 @@
 import { Component } from 'react';
-import {Form, SectionStyled, ContactsList, Filter, TitleStyled, RadioInput} from 'components'
+import {
+  Form,
+  SectionStyled,
+  ContactsList,
+  Filter,
+  TitleStyled,
+  // RadioInput,
+} from 'components';
 
 export class App extends Component {
   state = {
@@ -12,47 +19,51 @@ export class App extends Component {
     filter: '',
   };
 
-  deleteContact = (id) => {
-    this.setState(prevState => { return {
-      contacts: prevState.contacts.filter(el => el.id !== id)}
-    })
-  }
+  deleteContact = id => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(el => el.id !== id),
+      };
+    });
+  };
 
-  formSubmitHandler = (data) => {
-    const normilizedData = data.name.toLowerCase()
-    if (this.state.contacts.some(el => el.name.toLowerCase() === normilizedData)) {
-      alert(`${data.name} is already in contacts`)
-      return
+  formSubmitHandler = data => {
+    const normilizedData = data.name.toLowerCase();
+    if (
+      this.state.contacts.some(el => el.name.toLowerCase() === normilizedData)
+    ) {
+      alert(`${data.name} is already in contacts`);
+      return;
     }
-    this.setState((prevState) => {
-      return { contacts: [data, ...prevState.contacts] }
-    })
-}
+    this.setState(prevState => {
+      return { contacts: [data, ...prevState.contacts] };
+    });
+  };
 
-  filterChangeHandler = (event) => {
-    this.setState({ filter: event.currentTarget.value})
-  }
-  
+  filterChangeHandler = event => {
+    this.setState({ filter: event.currentTarget.value });
+  };
+
   render() {
     const { contacts, filter } = this.state;
     const normilizedFilter = filter.toLowerCase();
-    const visibleContacts = contacts.filter(el => el.name.toLowerCase().includes(normilizedFilter));
+    const visibleContacts = contacts.filter(el =>
+      el.name.toLowerCase().includes(normilizedFilter)
+    );
 
     return (
       <>
         <SectionStyled>
           <TitleStyled>Phonebook</TitleStyled>
-          <Form onSubmit={this.formSubmitHandler}/>
+          <Form onSubmit={this.formSubmitHandler} />
           <TitleStyled>Contacts</TitleStyled>
-          <Filter
-            value={filter}
-            onChange={ this.filterChangeHandler} />
+          <Filter value={filter} onChange={this.filterChangeHandler} />
           <ContactsList
             contacts={visibleContacts}
-            onBtnDelet={this.deleteContact} />
+            onBtnDelet={this.deleteContact}
+          />
         </SectionStyled>
-        <RadioInput/>
-
+        {/* <RadioInput /> */}
       </>
     );
   }

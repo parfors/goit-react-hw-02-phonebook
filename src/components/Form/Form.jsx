@@ -1,45 +1,46 @@
-import { Component } from "react";
+import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types'
-import {FormStyled,LabelStyled,ButtonStyled, InputStyled} from 'components'
+import PropTypes from 'prop-types';
+import { FormStyled, LabelStyled, ButtonStyled, InputStyled } from 'components';
 
 export class Form extends Component {
-    state = {
+  state = {
     name: '',
     number: '',
-    }
-  
- static propTypes = {
+  };
+
+  static propTypes = {
     onSubmit: PropTypes.func,
-  }
-  
-      hendleChange = (event) => {
+  };
+
+  hendleChange = event => {
     const { value, name } = event.currentTarget;
     this.setState({ [name]: value });
-    }
-    
-    createContact = () => {
-        const contact = this.state;
-        contact.id = nanoid();
-        return contact
-    }
+  };
 
-    hendleSubmit = (event) => {
-        event.preventDefault();
-        this.props.onSubmit(this.createContact())
-        this.reset();
-    }
+  createContact = () => {
+    const contact = this.state;
+    contact.id = nanoid();
+    return contact;
+  };
 
-      reset = () => {
+  hendleSubmit = event => {
+    event.preventDefault();
+    this.props.onSubmit(this.createContact());
+    this.reset();
+  };
+
+  reset = () => {
     this.setState({
-        name: '',
-        number: '',
-    })
-  }
+      name: '',
+      number: '',
+    });
+  };
 
-    render() {
-        const { name, number } = this.state;
-        return <>
+  render() {
+    const { name, number } = this.state;
+    return (
+      <>
         <FormStyled onSubmit={this.hendleSubmit}>
           <LabelStyled>
             Name
@@ -67,6 +68,7 @@ export class Form extends Component {
           </LabelStyled>
           <ButtonStyled type="submit">Add contact</ButtonStyled>
         </FormStyled>
-        </>
-    }
+      </>
+    );
+  }
 }

@@ -40,8 +40,7 @@ export const ButtonStyled = styled.button`
   margin: 15px 0 0 100px;
 `;
 
-export const ListStyled = styled.ol`
-`;
+export const ListStyled = styled.ol``;
 
 export const ListItem = styled.li`
   margin-left: 20px;
@@ -55,18 +54,17 @@ export const ParagraphStyled = styled.p`
 `;
 
 export const ButtonDeleteStyled = styled.button`
-    font-size: 14px;
+  font-size: 14px;
   font-weight: 400;
   margin: 10px 0 0 50px;
-`
+`;
 
 export const InputRadioStyled = styled.input`
   background-color: #0080002f;
   margin-left: 20px;
   margin-right: 10px;
+`;
 
-  `
-
-  export const LabeleRadio = styled(LabelStyled)`
+export const LabeleRadio = styled(LabelStyled)`
   justify-content: flex-start;
-  `
+`;
