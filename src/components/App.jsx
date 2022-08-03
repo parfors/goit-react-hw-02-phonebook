@@ -5,7 +5,7 @@ import {
   ContactsList,
   Filter,
   TitleStyled,
-  // RadioInput,
+  RadioInput,
 } from 'components';
 
 export class App extends Component {
@@ -17,6 +17,7 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+    color: 'red',
   };
 
   deleteContact = id => {
@@ -44,8 +45,12 @@ export class App extends Component {
     this.setState({ filter: event.currentTarget.value });
   };
 
+  radioBtnChangeHandler = data => {
+    this.setState({ color: data });
+  };
+
   render() {
-    const { contacts, filter } = this.state;
+    const { contacts, filter, color } = this.state;
     const normilizedFilter = filter.toLowerCase();
     const visibleContacts = contacts.filter(el =>
       el.name.toLowerCase().includes(normilizedFilter)
@@ -53,7 +58,7 @@ export class App extends Component {
 
     return (
       <>
-        <SectionStyled>
+        <SectionStyled style={{ backgroundColor: color }}>
           <TitleStyled>Phonebook</TitleStyled>
           <Form onSubmit={this.formSubmitHandler} />
           <TitleStyled>Contacts</TitleStyled>
@@ -62,8 +67,8 @@ export class App extends Component {
             contacts={visibleContacts}
             onBtnDelet={this.deleteContact}
           />
+          <RadioInput onChangeBtn={this.radioBtnChangeHandler} />
         </SectionStyled>
-        {/* <RadioInput /> */}
       </>
     );
   }
